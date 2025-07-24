@@ -1,2 +1,4 @@
 flask
 simplejson
+sympy
+-e ./latex2sympy
