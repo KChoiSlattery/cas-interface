@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../style/style.sass" />
+  </head>
+  <body>
+    <div class="centered">
+      <h1>Hello, world!</h1>
+      <p>
+        Enter two numbers in the boxes below and press "Calculate" to see their
+        sum.
+      </p>
+      <input
+        type="number"
+        id="a_input"
+        placeholder="First number to sum"
+      /><span> + </span
+      ><input
+        type="number"
+        id="b_input"
+        placeholder="Second number to sum"
+      /><span> = </span><span id="output_element"></span><br /><br />
+      <button id="calculate_button" type="button">Calculate</button>
+    </div>
+
+    <!-- Run the main script -->
+    <script type="module" src="../scripts/main.ts"></script>
+  </body>
+</html>

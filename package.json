@@ -1,0 +1,56 @@
+{
+  "name": "flask-app-template",
+  "version": "0.1.0",
+  "description": "Flask, typescript, and some other things working together.",
+  "source": [
+    "src/templates/index.html"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run clean & npm run build & npm run app",
+    "clean": "npx del-cli --force dist",
+    "build": "npx parcel build",
+    "app": "python -m flask run",
+    "quickstart": "npx parcel",
+    "postinstall": "npx patch-package"
+  },
+  "parcel-namer-rewrite": {
+    "chain": "@parcel/namer-default",
+    "hashing": "always",
+    "disable": false,
+    "rules": {
+      "\\b(\\w+)\\.(?:css|scss)\\b": "static/styles/$1{.hash}.css",
+      "\\b(\\w+)\\.(?:js)\\b": "static/scripts/$1{.hash}.js",
+      "\\b(\\w+)\\.(?:html)\\b": "templates/$1.html"
+    }
+  },
+  "targets": {
+    "default": {
+      "distDir": "dist"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KChoiSlattery/[replace with repo].git"
+  },
+  "author": "Kieran Choi-Slattery",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KChoiSlattery/[replace with repo]/issues"
+  },
+  "homepage": "https://github.com/KChoiSlattery/[replace with repo]#readme",
+  "devDependencies": {
+    "@gatsbyjs/parcel-namer-relative-to-cwd": "^2.13.1",
+    "@parcel/transformer-sass": "^2.12.0",
+    "@types/jquery": "^3.3.29",
+    "parcel": "^2.12.0",
+    "parcel-namer-rewrite": "^2.10.3-rc.2",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "del-cli": "^5.1.0",
+    "patch-package": "^8.0.0",
+    "jquery": "^3.4.1",
+    "run": "^1.5.0"
+  }
+}
