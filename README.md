@@ -1,6 +1,6 @@
-# flask-app-template
+# cas-interface
 
-Flask, typescript, and some other things working together. 
+A Flask app for intuitive interfacing with Sympy's algebraic solver, differentiator, and integrator. 
 
 ## Running the app
 

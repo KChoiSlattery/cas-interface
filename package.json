@@ -1,7 +1,7 @@
 {
-  "name": "flask-app-template",
+  "name": "cas-interface",
   "version": "0.1.0",
-  "description": "Flask, typescript, and some other things working together.",
+  "description": "A Flask app for intuitive interfacing with Sympy's algebraic solver, differentiator, and integrator.",
   "source": [
     "src/templates/index.html"
   ],
@@ -31,14 +31,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KChoiSlattery/[replace with repo].git"
+    "url": "git+https://github.com/KChoiSlattery/cas-interface.git"
   },
   "author": "Kieran Choi-Slattery",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KChoiSlattery/[replace with repo]/issues"
+    "url": "https://github.com/KChoiSlattery/cas-interface/issues"
   },
-  "homepage": "https://github.com/KChoiSlattery/[replace with repo]#readme",
+  "homepage": "https://github.com/KChoiSlattery/cas-interface#readme",
   "devDependencies": {
     "@gatsbyjs/parcel-namer-relative-to-cwd": "^2.13.1",
     "@parcel/transformer-sass": "^2.12.0",
