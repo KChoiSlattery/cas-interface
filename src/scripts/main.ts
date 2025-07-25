@@ -33,17 +33,7 @@ console.log("Running main.ts...")
 
 
 $(function () {
-    // Set up HTML elements in the page. They need to be casted to HTMLInputElement in order to call the .value attribute.
-    // const a_input = <HTMLInputElement>document.getElementById("a_input");
-    // const b_input = <HTMLInputElement>document.getElementById("b_input");
-    // const calculate_button = document.getElementById("calculate_button");
-    // const output_element = document.getElementById("output_element");
     const mathfield_span = document.getElementById("mathfield_span");
-
-    // Set up event listeners.
-    // calculate_button.addEventListener("click", function () {
-    //     python_sum(parseFloat(a_input.value), parseFloat(b_input.value), output_element);
-    // });
 
     MathQuillLoader.loadMathQuill({ mode: 'dev' }, mathquill => {
         var MQ = mathquill.getInterface(2);
