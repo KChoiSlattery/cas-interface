@@ -1,5 +1,6 @@
 import { MathQuillLoader } from 'mathquill-typescript';
 import $ from 'jquery';
+import katex from 'katex';
 
 const select2 = require('select2');
 select2($);
@@ -34,9 +35,21 @@ console.log("Running main.ts...")
 // }
 
 
+
+function format_math_select (tex) {
+  if (!tex.id) {
+    return tex.text;
+  }
+  var $tex = $(katex.renderToString(tex.text, {
+    output: 'mathml',
+    throwOnError: true
+  }));
+  return $tex;
+};
+
 $(document).ready(function () {
     const mathfield_span = document.getElementById("mathfield_span");
-    const example_text_span = document.getElementById("example_text_span");
+    const test_span = document.getElementById("test_span");
 
     MathQuillLoader.loadMathQuill({ mode: 'dev' }, mathquill => {
         var MQ = mathquill.getInterface(2);
@@ -46,8 +59,11 @@ $(document).ready(function () {
         // mathfield.latex gets the content of the mathfield
     });
 
-    $('.js-example-basic-single').select2();
-
+    $('.js-example-basic-single').select2({
+        templateResult: format_math_select,
+        templateSelection: format_math_select,
+        minimumResultsForSearch: 20
+    });
 });
 
 console.log("Successfully ran main.ts!")
