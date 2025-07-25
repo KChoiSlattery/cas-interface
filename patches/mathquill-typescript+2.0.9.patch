@@ -1,0 +1,13 @@
+diff --git a/node_modules/mathquill-typescript/dist/index.d.ts b/node_modules/mathquill-typescript/dist/index.d.ts
+index 53c27c4..712d1bf 100644
+--- a/node_modules/mathquill-typescript/dist/index.d.ts
++++ b/node_modules/mathquill-typescript/dist/index.d.ts
+@@ -10,7 +10,7 @@ export interface MqLoadingOptions {
+ }
+ export interface IMathQuill {
+     StaticMath: (htmlElement: HTMLElement) => BaseMethods;
+-    MathField: (htmlElement: HTMLElement, config?: IMathQuill) => MathFieldMethods;
++    MathField: (htmlElement: HTMLElement, config?: any) => MathFieldMethods;
+     getInterface: (version: 1 | 2) => IMathQuill;
+     noConflict: () => IMathQuill;
+     config: (MathQuillConfig) => void;

@@ -3,6 +3,7 @@ body {
   color: #333;
 }
 
-.centered {
+.header {
   text-align: center;
+  padding: 20px;
 }/*# sourceMappingURL=style.css.map */

@@ -48,9 +48,14 @@
     "process": "^0.11.10"
   },
   "dependencies": {
+    "@types/katex": "^0.16.7",
+    "@types/select2": "^4.0.63",
     "del-cli": "^5.1.0",
-    "patch-package": "^8.0.0",
     "jquery": "^3.4.1",
-    "run": "^1.5.0"
+    "katex": "^0.16.22",
+    "mathquill-typescript": "^2.0.9",
+    "patch-package": "^8.0.0",
+    "run": "^1.5.0",
+    "select2": "^4.1.0-rc.0"
   }
 }
