@@ -1,6 +1,8 @@
 import { MathQuillLoader } from 'mathquill-typescript';
 import $ from 'jquery';
-import 'select2';
+
+const select2 = require('select2');
+select2($);
 
 console.log("Running main.ts...")
 
@@ -32,8 +34,9 @@ console.log("Running main.ts...")
 // }
 
 
-$(function () {
+$(document).ready(function () {
     const mathfield_span = document.getElementById("mathfield_span");
+    const example_text_span = document.getElementById("example_text_span");
 
     MathQuillLoader.loadMathQuill({ mode: 'dev' }, mathquill => {
         var MQ = mathquill.getInterface(2);
@@ -43,7 +46,8 @@ $(function () {
         // mathfield.latex gets the content of the mathfield
     });
 
-    $('.math-select').select2();
+    $('.js-example-basic-single').select2();
+
 });
 
 console.log("Successfully ran main.ts!")
