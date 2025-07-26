@@ -1,10 +1,209 @@
-$font-stack: Helvetica, sans-serif
-$primary-color: #333
+@import url('https://fonts.googleapis.com/css?family=Open+Sans')
+  
+$font-stack: Georgia, serif
+$button-font-stack: "Open Sans", sans-serif
+$primary-text-color: #333
+$light-text-color: #747474
+$very-light-text-color: #999999
+$background-color: #f2f2f2
 
 body
   font: 100% $font-stack
-  color: $primary-color
+  color: $primary-text-color
+  background-color: $background-color
 
-.header
+body.loading #content_container 
+  display: none
+
+body.loading header
+  display: none
+
+body.loading footer
+  display: none
+
+h1
+  font: 4.5em $font-stack
+  margin: 0pt
+
+h2
+  font: 1.65em $font-stack
+  display: flex
+  color: $light-text-color
+  justify-content: center
+  gap: 0.25em
+  margin-top: 5pt
+
+h3
+  font: 2.5em $font-stack
+  margin: 0pt
+
+img
+  // object-fit: contain
+  height: 1.15em
+  // align-self: center
+
+p
+  display: inline
+  align-content: center
+  font: 1.5em $font-stack
+  color: $light-text-color
+  margin: 0
+
+nav
   text-align: center
-  padding: 20px;
+
+#page_container
+  display: flex
+  justify-content: center
+
+#page
+  align-self: center
+  display: inline-flex
+  flex-direction: column
+  align-items: stretch
+  justify-self: center
+  // background-color: #0000FF
+
+#topnav ul 
+  display: inline-block
+  list-style-type: none
+  margin: 0
+  padding: 0
+
+#topnav li 
+  float: left
+
+.topnav-link
+  text-decoration: none
+  display: block
+  padding: 8px
+  background-color: #ffffff
+  padding-left: 50px
+  padding-right: 50px
+  border-color: #000
+  border-style: solid
+  border-width: 1px
+  color: #000
+  margin-left: -1px
+
+#topnav a 
+  @extend .topnav-link
+
+#topnav a:hover
+  @extend .topnav-link
+  background-color: #dcdcdc
+
+#topnav .topnav-current
+  @extend .topnav-link
+  background-color: #000000
+  color: #ffffff
+
+#topnav a:active 
+  @extend .topnav-current
+
+#output_span
+  @extend p
+  // 1.5em $font-stack
+  color: #000
+  min-height: 4em
+
+#output_span.waiting
+  @extend p
+
+#output_span .katex
+  font-size: 1.25em
+
+header
+  text-align: center
+  padding: 20px
+
+.hidden
+  display: none
+
+button
+  font: 100% $button-font-stack
+  color: $light-text-color
+  background-image: linear-gradient(to bottom, #ffffff, #ebebeb);
+  border-radius: 5px
+  padding: 5px
+  padding-left: 30px
+  padding-right: 30px
+
+button:hover
+  background-image: none
+  background-color: #ebebeb
+
+button:active
+  background-image: none
+  background-color: #bebebe
+
+
+.row
+  display: flex
+  justify-content: center
+  align-content: center
+  margin-top: 10px
+  gap: 0.75em
+
+.hbar
+  background-color: #c6c6c6
+  height: 2px
+  margin-top: 25px
+  margin-bottom: 25px
+  margin-left: -50px
+  margin-right: -50px
+
+.right
+  margin-left: auto
+
+.button-container
+  // margin-left: auto
+  align-content: center
+  // position: relative
+  // right: 0px
+  // background-color: #fff
+
+#copy_output_button
+  padding-left: 10px
+  padding-right: 10px
+
+#content_container
+  display: flex
+  justify-content: center
+
+.content
+  align-self: center
+  display: inline-flex
+  flex-direction: column
+  align-items: stretch
+  justify-self: center
+
+.mathfield
+  min-width: 500px
+  min-height: 65px
+  text-align: center
+  align-content: center
+  background-color: #fff
+
+
+.sympy-green
+  color: #3B5526
+
+footer
+  text-justify: center
+  text-align: center
+
+footer .hbar
+  margin-left: 0
+  margin-right: 0
+  margin-bottom: 10px
+
+footer p
+  display: inline
+  // align-content: center
+  font: 1em $font-stack
+  color: $very-light-text-color
+  // margin: 10px
+
+footer a
+  color: $very-light-text-color

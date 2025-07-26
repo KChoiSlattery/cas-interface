@@ -21,6 +21,9 @@
     "rules": {
       "\\b(\\w+)\\.(?:css|scss)\\b": "static/styles/$1{.hash}.css",
       "\\b(\\w+)\\.(?:js)\\b": "static/scripts/$1{.hash}.js",
+      "\\b(\\w+)\\.(?:ico)\\b": "static/images/$1.ico",
+      "\\b(\\w+)\\.(?:png)\\b": "static/images/$1.png",
+      "\\b(\\w+)\\.(?:jpg|jpeg)\\b": "static/images/$1.jpg",
       "\\b(\\w+)\\.(?:html)\\b": "templates/$1.html"
     }
   },
