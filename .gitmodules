@@ -1,3 +1,6 @@
 [submodule "latex2sympy"]
 	path = latex2sympy
 	url = https://github.com/KChoiSlattery/latex2sympy.git
+[submodule "kieran-mathquill"]
+	path = mathquill
+	url = https://github.com/KChoiSlattery/mathquill.git
