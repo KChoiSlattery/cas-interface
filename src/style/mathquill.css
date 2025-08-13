@@ -26,29 +26,14 @@
   overflow: hidden;
 }
 @font-face {
-  font-family: Symbola;
-  src: url(fonts/Symbola.eot);
-  src: local('Symbola Regular'), local('Symbola'), url(fonts/Symbola.woff2) format('woff2'), url(fonts/Symbola.woff) format('woff'), url(fonts/Symbola.ttf) format('truetype'), url(fonts/Symbola.svg#Symbola) format('svg');
-}
-@font-face {
-  font-family: KaTeX_Main-Regular;
-  src: url(fonts/KaTeX_Main-Regular.woff2) format('woff2'), url(fonts/KaTeX_Main-Regular.woff) format('woff'), url(fonts/KaTeX_Main-Regular.ttf) format('truetype');
-}
-@font-face {
-  font-family: KaTeX_Main-Italic;
-  src: url(fonts/KaTeX_Main-Italic.woff2) format('woff2'), url(fonts/KaTeX_Main-Italic.woff) format('woff'), url(fonts/KaTeX_Main-Italic.ttf) format('truetype');
+  font-family: KaTeX_Main_Regular;
+  src: url(fonts/KaTeX_Main_Regular.woff2) format('woff2'), url(fonts/KaTeX_Main_Regular.woff) format('woff'), url(fonts/KaTeX_Main_Regular.ttf) format('truetype');
 }
 @font-face {
   font-family: KaTeX_Math;
-  src: url(fonts/KaTeX_Math-Italic.woff2) format('woff2'), url(fonts/KaTeX_Math-Italic.woff) format('woff'), url(fonts/KaTeX_Math-Italic.ttf) format('truetype');
+  src: url(fonts/KaTeX_Math_Italic.woff2) format('woff2'), url(fonts/KaTeX_Math_Italic.woff) format('woff'), url(fonts/KaTeX_Math_Italic.ttf) format('truetype');
   font-weight:400;
   font-style:italic;
-}
-@font-face {
-  font-family: KaTeX_Math;
-  src: url(fonts/KaTeX_Math-Italic.woff2) format('woff2'), url(fonts/KaTeX_Math-Italic.woff) format('woff'), url(fonts/KaTeX_Math-Italic.ttf) format('truetype');
-  font-weight:400;
-  font-style:normal;
 }
 
 .mq-editable-field {
@@ -198,7 +183,7 @@
 .mq-math-mode var,
 .mq-math-mode .mq-text-mode,
 .mq-math-mode .mq-nonSymbola {
-  font-family: KaTeX_Math, 'Times New Roman', Symbola, serif;
+  font-family: KaTeX_Math, 'Times New Roman', serif;
   line-height: 0.9;
 }
 .mq-math-mode svg {
@@ -243,7 +228,7 @@
   min-width: 1ex;
 }
 .mq-math-mode .mq-font {
-  font: 1em KaTeX_Math-Italic, 'Times New Roman', Symbola, serif;
+  font: 1em KaTeX_Main_Regular, 'Times New Roman', serif;
 }
 .mq-math-mode .mq-font * {
   font-family: inherit;
@@ -292,10 +277,10 @@
   font-style: normal;
 }
 .mq-math-mode .mq-sans-serif {
-  font-family: sans-serif, Symbola, serif;
+  font-family: sans-serif, serif;
 }
 .mq-math-mode .mq-monospace {
-  font-family: monospace, Symbola, serif;
+  font-family: monospace, serif;
 }
 .mq-math-mode .mq-overline {
   border-top: 1px solid;
@@ -372,7 +357,7 @@
   display: block;
 }
 .mq-math-mode .mq-operator-name {
-  font-family: KaTeX_Main-Regular, Symbola, 'Times New Roman', serif;
+  font-family: KaTeX_Main_Regular, 'Times New Roman', serif;
   line-height: 0.9;
   font-style: normal;
 }
@@ -482,7 +467,7 @@
 .mq-math-mode,
 .mq-math-mode .mq-editable-field {
   cursor: text;
-  font-family: KaTeX_Main-Regular, Symbola, 'Times New Roman', serif;
+  font-family: KaTeX_Main_Regular, 'Times New Roman', serif;
 }
 .mq-math-mode .mq-overarc {
   border-top: 1px solid;
