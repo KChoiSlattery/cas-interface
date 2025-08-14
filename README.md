@@ -19,6 +19,8 @@ To run the whole build/run pipeline: ``npm run start``
 - Python venv:
   - Make virtual environment: ``python3 -m venv venv``
   - Activate the virtual environment, this is different for linux/windows
+    - Windows: ``venv\Scripts\activate.bat``
+    - Linux: ``source venv/bin/activate``
   - Install requirements: ``pip install -r requirements.txt``
 - Docker image:
   - If on windows, make sure the Docker Desktop app is running

@@ -5,34 +5,64 @@ import katex from 'katex';
 const select2 = require('select2');
 select2($);
 
-console.log("Running main.ts...")
+console.log("Running solver.ts...")
 
-// Define functions that call the Python app.
-// function python_sum(a: number, b: number, output_element: HTMLSpanElement) {
-//     return $.ajax({
-//         type: "POST",
-//         url: '/python_sum',
-//         contentType: 'application/json',
-//         data: JSON.stringify({
-//             a: a,
-//             b: b
-//         }),
-//         traditional: true,
-//         success: function (data) {
-//             // optional log of output JSON
-//             // console.log(data);
+let currently_opening_variable_selection = false;
+function get_free_symbols(mathfield: any) {
+  let latex = mathfield.latex();
+  // console.log(latex)
+  return $.ajax({
+    type: "POST",
+    url: '/get_free_symbols',
+    contentType: 'application/json',
+    data: JSON.stringify({
+      latex: latex,
+    }),
+    traditional: true,
+    success: function (data) {
+      // optional log of output JSON
+      // console.log(data);
 
-//             let output = JSON.parse(data);
+      let output = JSON.parse(data);
 
-//             if (output["error_msg"] != "") {
-//                 console.error(output["error_msg"]);
-//             }
-//             else {
-//                 output_element.innerHTML = output["output"];
-//             }
-//         }
-//     });
-// }
+      if (output["error_msg"] == "") {
+        // Do this on successful run of the Python function
+        let free_symbols = output["free_symbols"];
+
+        // Save currently-selected option
+        let current_selection = $('.math-select').select2('data')[0].id;
+
+        // If the currently-selection option isn't in the list, add it in
+        if (!free_symbols.includes(current_selection)) {
+          free_symbols.push(current_selection);
+        }
+
+        // Sort the list of symbols
+        free_symbols.sort();
+
+        // Remove all options
+        $('.math-select').empty().trigger("change");
+
+        // Add all options from the list
+        for (let i = 0; i < free_symbols.length; i++) {
+          let new_option = new Option(free_symbols[i], free_symbols[i], false, false);
+          $('.math-select').append(new_option).trigger('change');
+        }
+
+        // Select the one that was previously selected
+        $('.math-select').val(current_selection);
+
+        // Open the selection
+        $('.math-select').select2('open');
+      }
+      else {
+        // If the python function errors, just put the Python error message in the javascript terminal.
+        console.error(output["error_msg"]);
+        alert("Your equation is invalid. Please fix any syntax errors before selecting a variable.")
+      }
+    }
+  });
+}
 
 function load_example(mathfield: any) {
   mathfield.latex("v^2=\\mu \\left(\\frac{2}{r}-\\frac{1}{a}\\right)");
@@ -68,6 +98,10 @@ $(document).ready(function () {
     var MQ = mathquill.getInterface(2);
     var mathfield = MQ.MathField(mathfield_span, {
       spaceBehavesLikeTab: false, // configurable
+      // handlers: {
+      // edit: function () {
+      // }
+      // }
     });
 
     example_button.addEventListener("click", function () {
@@ -77,15 +111,30 @@ $(document).ready(function () {
     solve_button.addEventListener("click", function () {
       fake_solve(output_span, copy_output_button);
     });
-  });
 
-  $('.math-select').select2({
-    templateResult: format_math_select,
-    templateSelection: format_math_select,
-    minimumResultsForSearch: 20
-  });
+    // Set up variable selector
+    $('.math-select').select2({
+      templateResult: format_math_select,
+      templateSelection: format_math_select,
+      minimumResultsForSearch: 20
+    });
 
-  body.classList.remove('loading'); // Remove the hiding class
+
+    $('.math-select').on('select2:opening', function (e) {
+      if (currently_opening_variable_selection) {
+        currently_opening_variable_selection = false;
+      }
+      else {
+        // Prevent default opening until data is ready
+        e.preventDefault(); 
+        
+        get_free_symbols(mathfield);
+        currently_opening_variable_selection = true;
+      }
+    });
+
+    body.classList.remove('loading'); // Remove the hiding class
+  });
 });
 
-console.log("Successfully ran main.ts!")
+console.log("Successfully ran solver.ts!")
