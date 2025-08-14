@@ -2,15 +2,14 @@
 <html>
   <head>
     <link rel="stylesheet" href="../style/style.sass" />
-    <link rel="stylesheet" href="../style/mathquill.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <!-- select2 requirements -->
-    <link
+    <!-- <link
       href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
       rel="stylesheet"
     />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> -->
 
     <title>Algebraic Solver</title>
     <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
@@ -21,16 +20,16 @@
       <div id="page">
         <nav id="topnav">
           <ul>
-            <li><a href="">Home</a></li>
-            <li><a class="topnav-current" href="">Algebraic Solver</a></li>
-            <li><a href="">Integral/Derivative Calculator</a></li>
-            <li><a href="">Evaluator (With Units)</a></li>
-            <li><a href="">Code Generator</a></li>
+            <li><a class="topnav-current" href="/">Home</a></li>
+            <li><a href="solver">Algebraic Solver</a></li>
+            <li><a href="calculus">Integral/Derivative Calculator</a></li>
+            <li><a href="evaluate">Evaluator (With Units)</a></li>
+            <li><a href="code">Code Generator</a></li>
           </ul>
         </nav>
   
         <header>
-          <h1>Algebraic Solver</h1>
+          <h1>Kieran's Math Tools</h1>
           <h2>
             <span>Powered by</span><span class="sympy-green">SymPy</span
             ><img src="../images/sympylogo.png" atl="SymPy Logo" />
@@ -40,37 +39,7 @@
         <div id="content_container">
           <div class="content">
             <div class="row">
-              <p>Type an equation:</p>
-              <span class="button-container right"
-                ><button id="example_button">Load Example</button></span
-              >
-            </div>
-  
-            <div class="row">
-              <span id="mathfield_span" class="mathfield"></span>
-            </div>
-            <div class="row">
-              <p>Solve for</p>
-              <select class="math-select">
-                <option value="x">x</option>
-                <option value="y">y</option>
-              </select>
-            </div>
-            <div class="row">
-              <button id="solve_button">Solve Equation</button>
-            </div>
-            <div class="row hbar"></div>
-            <div class="row">
-              <h3>Solution(s):</h3>
-            </div>
-            <div class="row">
-              <span id="output_span" class="waiting"
-                >Click "Solve Equation."</span
-              >
-              <span class="button-container"><button id="copy_output_button" class="hidden">&#x29c9;</button></span>
-            </div>
-            <div class="row">
-              <button>Evaluate Solution &#x21A9;</button><button>Generate Code &#x21A9;</button>
+              <p>Click any of the buttons above to get started!</p>
             </div>
           </div>
         </div>
@@ -87,6 +56,6 @@
     </div>
 
     <!-- Run the main script -->
-    <script type="module" src="../scripts/main.ts"></script>
+    <script type="module" src="../scripts/index.ts"></script>
   </body>
 </html>

@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "A Flask app for intuitive interfacing with Sympy's algebraic solver, differentiator, and integrator.",
   "source": [
-    "src/templates/index.html"
+    "src/templates/index.html",
+    "src/templates/solve.html"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

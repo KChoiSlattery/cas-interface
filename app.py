@@ -8,8 +8,12 @@ app = Flask(__name__,
 
 # The following two functions are necessary to get the site to load the pages and files properly.
 @app.route("/", methods=['GET', 'POST'] ) 
-def home():
+def home_page():
    return render_template('index.html')
+
+@app.route("/solver", methods=['GET', 'POST'] ) 
+def solver_page():
+   return render_template('solver.html')
 
 @app.route('/static/<path:path>')
 def send_report(path):
