@@ -1,4 +1,5 @@
 flask
 simplejson
 sympy
+pyuwsgi
 -e ./latex2sympy

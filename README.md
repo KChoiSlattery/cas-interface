@@ -3,17 +3,25 @@
 A Flask app for intuitive interfacing with Sympy's algebraic solver, differentiator, and integrator. 
 
 ## Running the app
+``docker build -t cas-interface .``
+``docker run -t -p 5000:5000 cas-interface``
 
-If no changes have been made: ``npm run app``. Otherwise, build from source and then run.
+Or both at once:
+``docker build -t cas-interface . && docker run -t -p 5000:5000 cas-interface``
 
-## Building from source
+To interactively connect to the docker instance:
+``docker run -it -p 5000:5000 cas-interface``
+
+<!-- If no changes have been made: ``npm run app``. Otherwise, build from source and then run. -->
+
+<!-- ## Building from source
 
 - Clean the ``dist`` folder: ``npm run clean``
 - Build: ``npm run build``
 
-To run the whole build/run pipeline: ``npm run start``
+To run the whole build/run pipeline: ``npm run start`` -->
 
-## Setting up enviroments
+<!-- ## Setting up enviroments
 
 - Install all required node modules: ``npm install``
 - Python venv:
@@ -38,4 +46,4 @@ This should open a new VS Code window, which you will use to develop your code. 
 
 - Ensure your changes are saved
 - Close the Dev Container VS Code window
-- In the terminal in the original VS Code window, run `docker-compose down`
+- In the terminal in the original VS Code window, run `docker-compose down` -->

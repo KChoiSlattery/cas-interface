@@ -2,6 +2,6 @@ venv
 venv-linux
 node_modules
 .parcel-cache
-dist
+# dist
 __pycache__
 sandbox
