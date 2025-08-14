@@ -4,13 +4,13 @@ A Flask app for intuitive interfacing with Sympy's algebraic solver, differentia
 
 ## Running the app
 ``docker build -t cas-interface .``
-``docker run -t -p 5000:5000 cas-interface``
+``docker run -t -p 10000:10000 cas-interface``
 
 Or both at once:
-``docker build -t cas-interface . && docker run -t -p 5000:5000 cas-interface``
+``docker build -t cas-interface . && docker run -t -p 10000:10000 cas-interface``
 
 To interactively connect to the docker instance:
-``docker run -it -p 5000:5000 cas-interface``
+``docker run -it -p 10000:10000 cas-interface``
 
 <!-- If no changes have been made: ``npm run app``. Otherwise, build from source and then run. -->
 
