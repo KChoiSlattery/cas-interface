@@ -1,11 +1,3 @@
-# FROM alpine:3.18
-
-# RUN apk add \
-# python3~3.11 \
-# nodejs \
-# npm \
-# git
-
 FROM debian:12
 
 RUN apt update && \
@@ -20,7 +12,7 @@ RUN apt update && \
 WORKDIR /usr/app
 
 # Set up Python environment
-RUN git clone https://github.com/KChoiSlattery/latex2sympy.git
+COPY latex2sympy ./latex2sympy
 COPY requirements.txt ./
 
 RUN python3 -m venv venv
