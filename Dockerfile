@@ -10,13 +10,12 @@ RUN apt update && \
 WORKDIR /app
 
 # Set up Node
-COPY package.json package-lock.json ./
-COPY patches ./patches
+COPY package.json package-lock.json config/patches ./
 RUN npm ci
 
-COPY config/.parcelrc config/tsconfig.json ./
 
 # Build app
+COPY config/.parcelrc config/tsconfig.json ./
 COPY src ./src 
 RUN npx parcel build
 
