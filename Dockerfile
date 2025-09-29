@@ -14,9 +14,11 @@ COPY package.json package-lock.json ./
 COPY patches ./patches
 RUN npm ci
 
+# Dump the contents of the config folder into /app.
+COPY config .
+
 # Build app
 COPY src ./src 
-COPY tsconfig.json .parcelrc ./
 RUN npx parcel build
 
 FROM debian:12 AS app
@@ -28,14 +30,11 @@ RUN apt update && \
 
 WORKDIR /app
 
-COPY --from=builder /app/dist ./dist
-
-COPY app.py ./
-COPY uwsgi.ini ./
+COPY app.py config/uwsgi.ini requirements.txt ./
 
 # Set up Python environment
-COPY requirements.txt ./
 RUN python3 -m venv venv
 RUN venv/bin/pip install -r requirements.txt
 
+COPY --from=builder /app/dist ./dist
 CMD ["venv/bin/uwsgi", "--ini", "uwsgi.ini", "-w", "app:app"]
