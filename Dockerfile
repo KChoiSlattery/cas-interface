@@ -12,9 +12,7 @@ RUN apt update && \
 WORKDIR /usr/app
 
 # Set up Python environment
-COPY latex2sympy ./latex2sympy
 COPY requirements.txt ./
-
 RUN python3 -m venv venv
 RUN venv/bin/pip install -r requirements.txt
 
