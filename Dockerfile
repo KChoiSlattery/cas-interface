@@ -1,4 +1,4 @@
-FROM debian:12
+FROM debian:12 AS builder
 
 RUN apt update && \
   apt clean && \
@@ -7,7 +7,7 @@ RUN apt update && \
   nodejs \
   npm
 
-WORKDIR /usr/app
+WORKDIR /app
 
 # Set up Node
 COPY package.json package-lock.json ./
@@ -19,14 +19,16 @@ COPY src ./src
 COPY tsconfig.json .parcelrc ./
 RUN npx parcel build
 
-FROM debian:12
+FROM debian:12 AS app
 RUN apt update && \
   apt clean && \
   apt install -y \
   git \
   python3.11-venv
 
-WORKDIR /usr/app
+WORKDIR /app
+
+COPY --from=builder /app/dist ./dist
 
 COPY app.py ./
 COPY uwsgi.ini ./
