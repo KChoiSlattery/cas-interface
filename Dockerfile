@@ -14,27 +14,27 @@ COPY package.json package-lock.json ./
 COPY patches ./patches
 RUN npm ci
 
-# Dump the contents of the config folder into /app.
-COPY config .
+COPY config/.parcelrc config/tsconfig.json ./
 
 # Build app
 COPY src ./src 
 RUN npx parcel build
 
-FROM debian:12 AS app
+FROM python:3.11-slim-bookworm AS app
+
 RUN apt update && \
   apt clean && \
   apt install -y \
-  git \
-  python3.11-venv
+  git 
 
 WORKDIR /app
 
-COPY app.py config/uwsgi.ini requirements.txt ./
+COPY config/uwsgi.ini requirements.txt ./
 
 # Set up Python environment
 RUN python3 -m venv venv
 RUN venv/bin/pip install -r requirements.txt
 
+COPY app.py .
 COPY --from=builder /app/dist ./dist
 CMD ["venv/bin/uwsgi", "--ini", "uwsgi.ini", "-w", "app:app"]
