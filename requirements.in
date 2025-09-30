@@ -2,4 +2,4 @@ flask
 simplejson
 sympy
 pyuwsgi
-git+https://github.com/KChoiSlattery/latex2sympy.git
+git+https://github.com/KChoiSlattery/latex2sympy.git@alpine

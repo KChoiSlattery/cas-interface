@@ -19,12 +19,11 @@ COPY config/.parcelrc config/tsconfig.json ./
 COPY src ./src 
 RUN npx parcel build
 
-FROM python:3.11-slim-bookworm AS app
+FROM python:3.11-alpine AS app
 
-RUN apt update && \
-  apt clean && \
-  apt install -y \
-  git 
+RUN apk update && apk add \
+  git \
+  libstdc++
 
 WORKDIR /app
 
