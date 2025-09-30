@@ -3,6 +3,7 @@ import simplejson as json
 
 from latex2sympy.latex2sympy import process_sympy
 import sympy as sp
+import pyuwsgi
 
 app = Flask(__name__, template_folder="dist/templates", static_folder="dist/static")
 
@@ -68,3 +69,8 @@ def solve_equation():
         return json.dumps({"solved_equation": solved_rhs_latex, "error_msg": ""})
     except Exception as error:
         return json.dumps({"free_symbols": 0, "error_msg": repr(error)})
+
+
+if __name__ == "__main__":
+    print("hi!")
+    pyuwsgi.run(["--ini", "uwsgi.ini", "-w", "app:app"])

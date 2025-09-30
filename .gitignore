@@ -1,5 +1,4 @@
-venv
-venv-linux
+.venv
 node_modules
 .parcel-cache
 # dist
