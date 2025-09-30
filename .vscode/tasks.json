@@ -10,13 +10,13 @@
             {
                 "label": "Open Shell in App Stage",
                 "type": "shell",
-                "command": "cd ${workspaceFolder} && docker build -t cas-interface . && docker run -it --rm -p 10000:10000 cas-interface /bin/bash",
+                "command": "cd ${workspaceFolder} && docker build -t cas-interface . && docker run -it --rm -p 10000:10000 cas-interface /bin/ash",
                 "problemMatcher": []
             },
             {
                 "label": "Open Shell in Builder Stage",
                 "type": "shell",
-                "command": "cd ${workspaceFolder} && docker build --target builder -t cas-interface-builder . && docker run -it --rm cas-interface-builder /bin/bash",
+                "command": "cd ${workspaceFolder} && docker build --target builder -t cas-interface-builder . && docker run -it --rm cas-interface-builder /bin/ash",
                 "problemMatcher": []
             }
         ]
