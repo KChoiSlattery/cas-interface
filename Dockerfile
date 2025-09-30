@@ -1,20 +1,12 @@
-FROM debian:12 AS builder
-
-RUN apt update && \
-  apt clean && \
-  apt install -y \
-  git \
-  nodejs \
-  npm
+FROM node:24-alpine3.21 AS builder
 
 WORKDIR /app
 
-# Set up Node
+# Set up Node packages
 COPY package.json package-lock.json config/patches ./
 RUN npm ci
 
-
-# Build app
+# Build static files
 COPY config/.parcelrc config/tsconfig.json ./
 COPY src ./src 
 RUN npx parcel build
@@ -27,12 +19,12 @@ RUN apk update && apk add \
 
 WORKDIR /app
 
-COPY config/uwsgi.ini requirements.txt ./
-
 # Set up Python environment
+COPY config/uwsgi.ini requirements.txt ./
 RUN python3 -m venv venv
 RUN venv/bin/pip install -r requirements.txt
 
+# Run app
 COPY app.py .
 COPY --from=builder /app/dist ./dist
 CMD ["venv/bin/uwsgi", "--ini", "uwsgi.ini", "-w", "app:app"]
