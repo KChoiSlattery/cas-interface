@@ -7,12 +7,6 @@
     "src/templates/solver.html"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run clean & npm run build & npm run app",
-    "clean": "npx del-cli --force dist",
-    "build": "npx parcel build",
-    "app": "python3.11 -m flask run",
-    "quickstart": "npx parcel",
     "postinstall": "npx patch-package"
   },
   "parcel-namer-rewrite": {
@@ -41,7 +35,7 @@
     "url": "git+https://github.com/KChoiSlattery/cas-interface.git"
   },
   "author": "Kieran Choi-Slattery",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/KChoiSlattery/cas-interface/issues"
   },
