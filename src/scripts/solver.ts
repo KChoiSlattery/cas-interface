@@ -78,6 +78,9 @@ function solve_equation(
   let equation_latex = mathfield.latex();
   let solve_var_latex = $(".math-select").select2("data")[0].id;
 
+  copy_output_button.classList.add("hidden");
+  output_span.innerHTML = "Loading...";
+
   return $.ajax({
     type: "POST",
     url: "/solve_equation",
@@ -87,6 +90,7 @@ function solve_equation(
       solve_var_latex: solve_var_latex,
     }),
     traditional: true,
+
     success: function (data) {
       // optional log of output JSON
       // console.log(data);
@@ -100,12 +104,15 @@ function solve_equation(
         katex.render(solve_var_latex + "=" + solved_equation, output_span, {
           output: "mathml",
         });
+        output_span.classList.remove("loader");
         output_span.classList.remove("waiting");
         copy_output_button.classList.remove("hidden");
       } else {
-        // If the python function errors, just put the Python error message in the javascript terminal.
+        // If the python function errors, put the Python error message in the javascript terminal.
         let error_message = output["error_msg"];
         console.error(error_message);
+
+        output_span.innerHTML = "Click \"Solve Equation.\"";
         if (
           error_message ==
           "ValueError('The selected variable is not in the submitted equation.')"
@@ -118,9 +125,14 @@ function solve_equation(
           "ValueError('Please enter an equation before attempting to solve.')"
         ) {
           alert("Please enter an equation before attempting to solve.");
+        } else if (
+          error_message == "ValueError('There are no implemented algorithms to solve this type of equation.')") {
+          alert("There are no implemented algorithms to solve this type of equation.");
+        } else if (error_message == "ValueError('Your equation is invalid. Please fix any syntax errors before selecting a variable.')") {
+          alert("Your equation is invalid. Please fix any syntax errors before selecting a variable.");
         } else {
           alert(
-            "Your equation is invalid. Please fix any syntax errors before selecting a variable."
+            "An unknown Python error occured: "+error_message
           );
         }
       }

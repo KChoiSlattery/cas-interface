@@ -53,15 +53,32 @@ def solve_equation():
         if equation_latex == "":
             raise (ValueError("Please enter an equation before attempting to solve."))
 
-        equation = process_sympy(equation_latex)
-        solve_var = process_sympy(solve_var_latex)
+        try:
+            equation = process_sympy(equation_latex)
+            solve_var = process_sympy(solve_var_latex)
+        except Exception as error:
+            raise (
+                ValueError(
+                    "Your equation is invalid. Please fix any syntax errors before selecting a variable."
+                )
+            )
 
         if solve_var not in equation.free_symbols:
             raise (
                 ValueError("The selected variable is not in the submitted equation.")
             )
 
-        solved_rhs = sp.solve(equation, solve_var)
+        try:
+            solved_rhs = sp.solve(equation, solve_var)
+        except Exception as error:
+            if repr(error)[:40] == "NotImplementedError('multiple generators":
+                raise (
+                    ValueError(
+                        "There are no implemented algorithms to solve this type of equation."
+                    )
+                )
+            else:
+                raise (error)
         if len(solved_rhs) == 1:
             solved_rhs_latex = sp.latex(solved_rhs[0])
         else:
@@ -72,5 +89,4 @@ def solve_equation():
 
 
 if __name__ == "__main__":
-    print("hi!")
     pyuwsgi.run(["--ini", "uwsgi.ini", "-w", "app:app"])

@@ -17,6 +17,7 @@ RUN apk update && apk add \
   git \
   libstdc++
 
+EXPOSE 10000
 WORKDIR /app
 
 # Set up Python environment
@@ -32,5 +33,6 @@ RUN pip install -r requirements.txt && \
 # Run app
 COPY app.py .
 COPY --from=builder /app/dist ./dist
+
+
 CMD ["python", "app.py"]
-# CMD ["uwsgi", "--ini", "uwsgi.ini", "-w", "app:app"]
