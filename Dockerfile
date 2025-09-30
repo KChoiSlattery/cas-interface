@@ -23,12 +23,8 @@ WORKDIR /app
 # Set up Python environment
 COPY config/uwsgi.ini requirements.txt ./
 
-# Install Python requirements. This also deletes all folders called "tests" in
-# python libraries so keep that in mind.
-RUN pip install -r requirements.txt && \
-    find / -type d -name "__pycache__" -exec rm -r {} + && \
-    find /usr/local/lib/python3.11/site-packages/ -type d -name "tests" -exec rm -r {} + && \
-    pip cache purge
+# Install Python requirements.
+RUN pip install -r requirements.txt
 
 # Run app
 COPY app.py .
