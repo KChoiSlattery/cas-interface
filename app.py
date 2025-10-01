@@ -9,9 +9,13 @@ app = Flask(__name__, template_folder="dist/templates", static_folder="dist/stat
 
 
 # The following functions are necessary to get the site to load the pages and files properly.
+
+# To restore the multi-page setup, replace the argument of render_template in this function with "index.html".
+
+
 @app.route("/", methods=["GET", "POST"])
 def home_page():
-    return render_template("index.html")
+    return render_template("solver.html")
 
 
 @app.route("/solver", methods=["GET", "POST"])
