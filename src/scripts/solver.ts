@@ -8,6 +8,8 @@ select2($);
 console.log("Running solver.ts...");
 
 let currently_opening_variable_selection = false;
+let output_latex = "";
+
 function get_free_symbols(mathfield: any) {
   let latex = mathfield.latex();
   // console.log(latex)
@@ -103,7 +105,7 @@ function solve_equation(
       if (output["error_msg"] == "") {
         // Do this on successful run of the Python function
         let solved_equation = output["solved_equation"];
-
+        output_latex = solved_equation;
         katex.render(solve_var_latex + "=" + solved_equation, output_span, {
           output: "mathml",
         });
@@ -171,6 +173,14 @@ function format_math_select(tex) {
   return $tex;
 }
 
+async function copy_output() {
+  try {
+    await navigator.clipboard.writeText(output_latex);
+  } catch (err) {
+    console.error('Failed to copy text: ', err);
+  }
+}
+
 $(document).ready(function () {
   const body = document.body;
   const mathfield_span = document.getElementById("mathfield_span");
@@ -195,6 +205,10 @@ $(document).ready(function () {
 
     solve_button.addEventListener("click", function () {
       solve_equation(mathfield, output_span, copy_output_button);
+    });
+
+    copy_output_button.addEventListener("click", function () {
+      copy_output(output_span);
     });
 
     // Set up variable selector
