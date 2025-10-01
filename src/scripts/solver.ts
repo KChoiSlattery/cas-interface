@@ -60,11 +60,14 @@ function get_free_symbols(mathfield: any) {
         // Open the selection
         $(".math-select").select2("open");
       } else {
-        // If the python function errors, just put the Python error message in the javascript terminal.
+        // If the python function errors, put the Python error message in the javascript terminal.
         console.error(output["error_msg"]);
         alert(
           "Your equation is invalid. Please fix any syntax errors before selecting a variable."
         );
+        // Open the selection
+        $(".math-select").select2("open");
+        $(".math-select").select2("close");
       }
     },
   });
@@ -132,7 +135,7 @@ function solve_equation(
           alert("Your equation is invalid. Please fix any syntax errors before selecting a variable.");
         } else {
           alert(
-            "An unknown Python error occured: "+error_message
+            "An unknown Python error occured: " + error_message
           );
         }
       }
